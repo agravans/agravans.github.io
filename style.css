@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Neue+Montreal&display=swap');
+
+:root {
+    --primary-color: #101010;
+    --secondary-color: #FD6746;
+    --text-color: #777777;
+    --background-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Neue Montreal', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.portfolio {
+    width: 80%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    padding: 40px;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.title {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.content {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+h2:hover {
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.console {
+    width: 300px;
+    height: 150px;
+    background-color: #222;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    margin: 0 auto 40px;
+    animation: rotate 5s infinite linear;
+    border: 5px solid #FD6746;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+.console::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, #333, #111);
+    border-radius: 20px;
+    transform: translateZ(-20px);
+}
+
+.console-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(20px);
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+@media (max-width: 768px) {
+    .portfolio {
+        width: 95%;
+    }
+} 

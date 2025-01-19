@@ -87,8 +87,8 @@ h2:hover {
 }
 
 .console {
-    width: 600px;
-    height: 300px;
+    width: 800px;
+    height: 400px;
     background-color: #333;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -99,7 +99,7 @@ h2:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 10px solid #FD6746;
+    border: 10px solid #000;
 }
 
 .console-screen {
@@ -114,6 +114,24 @@ h2:hover {
     color: #fff;
     font-family: 'Press Start 2P', cursive;
     font-size: 1.2em;
+}
+
+.joycon-left {
+    width: 50px;
+    height: 100%;
+    background-color: #3b82f6;
+    position: absolute;
+    left: -60px;
+    border-radius: 20px 0 0 20px;
+}
+
+.joycon-right {
+    width: 50px;
+    height: 100%;
+    background-color: #ef4444;
+    position: absolute;
+    right: -60px;
+    border-radius: 0 20px 20px 0;
 }
 
 @keyframes rotate {

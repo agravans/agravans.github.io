@@ -1,32 +1,26 @@
-import { Nav } from "./components/Nav";
-import { Hero } from "./components/Hero";
-import { Experience } from "./components/Experience";
-import { Projects } from "./components/Projects";
-import { Skills } from "./components/Skills";
-import { Publications } from "./components/Publications";
-import { Contact } from "./components/Contact";
-import { Education } from "./components/Education";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Home } from "./pages/Home";
+import { Projects } from "./pages/Projects";
+import { ProjectCaseStudy } from "./pages/ProjectCaseStudy";
+import { Experience } from "./pages/Experience";
+import { Writing } from "./pages/Writing";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 
 function App() {
   return (
-    <>
-      <Nav />
-      <main className="relative">
-        <Hero />
-        <Experience />
-        <Projects />
-        <Education />
-        <Skills />
-        <Publications />
-        <Contact />
-      </main>
-      <footer className="py-8 px-6 border-t border-[var(--border)]">
-        <p className="text-center text-sm text-[var(--text-dim)]">
-          © {new Date().getFullYear()} Subandhu Agravanshi · Built with React,
-          Tailwind, Framer Motion
-        </p>
-      </footer>
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/writing" element={<Writing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Layout>
   );
 }
 

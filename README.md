@@ -2,7 +2,7 @@
 
 Professional portfolio for Subandhu Agravanshi, AI Engineer with 3+ years in GenAI, RAG, agentic workflows, and production ML systems.
 
-**Live:** https://agravans.github.io/portolio/
+**Live:** https://agravans.github.io
 
 ## Tech Stack
 
@@ -21,18 +21,15 @@ npm run dev
 
 ## Deploy to GitHub Pages (Free)
 
-1. Create a new repo: **agravans/portolio** on [GitHub](https://github.com/new)
-2. Push this folder:
+1. Push to **agravans/agravans.github.io**:
    ```bash
    cd portolio
-   git init
+   git remote set-url origin https://github.com/agravans/agravans.github.io.git
    git add .
-   git commit -m "Initial portfolio"
-   git remote add origin https://github.com/agravans/portolio.git
-   git branch -M main
+   git commit -m "Portfolio"
    git push -u origin main
    ```
-3. Enable GitHub Pages: **Settings → Pages → Source: GitHub Actions**
-4. On the next push to `main`, the workflow deploys automatically.
+2. Enable GitHub Pages: **Settings → Pages → Build and deployment → Source: GitHub Actions**
+3. On push to `main`, the workflow deploys automatically.
 
-Site will be live at **https://agravans.github.io/portolio/**
+Site: **https://agravans.github.io**

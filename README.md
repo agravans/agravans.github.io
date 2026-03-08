@@ -29,7 +29,7 @@ npm run dev
    git commit -m "Portfolio"
    git push -u origin main
    ```
-2. Enable GitHub Pages: **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. Enable GitHub Pages: **Settings → Pages → Source: Deploy from a branch** → Branch: **gh-pages** → Folder: **/ (root)** → Save
 3. On push to `main`, the workflow deploys automatically.
 
 Site: **https://agravans.github.io**

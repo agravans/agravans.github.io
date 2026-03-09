@@ -5,8 +5,10 @@ import { Projects } from "./pages/Projects";
 import { ProjectCaseStudy } from "./pages/ProjectCaseStudy";
 import { Experience } from "./pages/Experience";
 import { Writing } from "./pages/Writing";
+import { WritingDetail } from "./pages/WritingDetail";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
+import { Now } from "./pages/Now";
 
 function App() {
   return (
@@ -17,8 +19,10 @@ function App() {
         <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/writing" element={<Writing />} />
+        <Route path="/writing/:slug" element={<WritingDetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/now" element={<Now />} />
       </Routes>
     </Layout>
   );

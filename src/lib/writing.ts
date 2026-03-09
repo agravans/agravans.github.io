@@ -1,20 +1,41 @@
 export const WRITING = [
   {
     slug: "building-lifeos",
-    title: "What I learned building LifeOS",
-    excerpt: "From a personal productivity mess to a structured AI-assisted system—architecture decisions and lessons.",
+    title: "Building LifeOS from personal chaos",
+    excerpt: "What I learned turning a messy productivity system into an AI-native personal operating system.",
+    category: "Build Logs",
     date: "2024",
+    readTime: "8 min",
+    featured: true,
   },
   {
-    slug: "ai-demos-production",
-    title: "Why most AI demos don't survive production",
-    excerpt: "Latency, cost, fallbacks, observability—what it takes to ship real AI systems.",
+    slug: "useful-ai-beyond-demos",
+    title: "What makes AI systems useful beyond demos",
+    excerpt: "Latency, cost, fallbacks, observability—what it takes for AI to earn its place in production.",
+    category: "AI Systems",
     date: "2024",
+    readTime: "6 min",
+    featured: true,
   },
   {
     slug: "rag-agents-product",
-    title: "How I think about RAG, agents, and product systems",
-    excerpt: "Connecting retrieval, orchestration, and reasoning to actual user value.",
+    title: "RAG, agents, and the difference between prototypes and products",
+    excerpt: "How I think about connecting retrieval, orchestration, and reasoning to actual user value.",
+    category: "Product Thinking",
     date: "2024",
+    readTime: "7 min",
+    featured: true,
   },
 ];
+
+export const WRITING_CATEGORIES = [
+  "All",
+  "Build Logs",
+  "AI Systems",
+  "Product Thinking",
+  "Career",
+];
+
+export function getWriting(slug: string) {
+  return WRITING.find((w) => w.slug === slug);
+}

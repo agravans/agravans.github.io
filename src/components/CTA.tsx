@@ -14,6 +14,7 @@ export function CTA() {
       </Link>
       <a
         href="/resume.pdf"
+        download="Subandhu-Agravanshi-Resume.pdf"
         className={`${BUTTON} border border-[var(--border)] text-[var(--text)] hover:bg-[var(--surface)]`}
       >
         Resume

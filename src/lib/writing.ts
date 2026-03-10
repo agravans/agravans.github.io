@@ -26,6 +26,14 @@ export const WRITING = [
     readTime: "7 min",
     featured: true,
   },
+  {
+    slug: "what-productivity-means-with-ai",
+    title: "What Productivity Means with AI?",
+    excerpt: "A framework for giving AI enough structured context to become a personalized operating layer instead of a generic assistant.",
+    category: "AI Systems",
+    date: "2026",
+    readTime: "5 min",
+  },
 ];
 
 export const WRITING_CATEGORIES = [

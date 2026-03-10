@@ -60,6 +60,20 @@ export function WritingDetail() {
                   strong: ({ children }) => <strong className="text-[var(--text)] font-semibold">{children}</strong>,
                   ul: ({ children }) => <ul className="list-disc pl-6 space-y-2 my-4 text-[var(--text-muted)]">{children}</ul>,
                   li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                  a: ({ href, children }) => {
+                    const isPromptLink = href?.includes("docs.google.com/document/d/1w9q2UBhmilLC8rC_x65RTdTrsZb3l5_ryAosDr5uaFk");
+                    return (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={isPromptLink ? "prompt-doc-link" : ""}
+                      >
+                        {children}
+                        {isPromptLink && " →"}
+                      </a>
+                    );
+                  },
                 }}
               >
                 {content}

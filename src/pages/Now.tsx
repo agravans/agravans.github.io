@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const FOCUS = {
   building: ["LifeOS", "Agentic execution systems", "Multimodal workflows"],
   thinking: ["Useful AI products", "Memory and orchestration", "Better human-AI interfaces"],
-  writing: ["Building LifeOS from personal chaos", "Useful AI beyond demos", "RAG, agents, and product thinking"],
+  writing: ["Building LifeOS from personal chaos", "The 50 Questions That Make AI Personal", "Turning GPT into a Personalized Productivity Agent"],
   learning: ["LangGraph patterns", "Multimodal UX", "Cost-efficient inference"],
 };
 

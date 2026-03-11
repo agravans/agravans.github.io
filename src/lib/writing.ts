@@ -7,41 +7,34 @@ export const WRITING = [
     date: "2024",
     readTime: "8 min",
     featured: true,
-  },
-  {
-    slug: "useful-ai-beyond-demos",
-    title: "What makes AI systems useful beyond demos",
-    excerpt: "Latency, cost, fallbacks, observability—what it takes for AI to earn its place in production.",
-    category: "AI Systems",
-    date: "2024",
-    readTime: "6 min",
-    featured: true,
-  },
-  {
-    slug: "rag-agents-product",
-    title: "RAG, agents, and the difference between prototypes and products",
-    excerpt: "How I think about connecting retrieval, orchestration, and reasoning to actual user value.",
-    category: "Product Thinking",
-    date: "2024",
-    readTime: "7 min",
-    featured: true,
+    series: null,
   },
   {
     slug: "what-productivity-means-with-ai",
-    title: "What Productivity Means with AI?",
+    title: "The 50 Questions That Make AI Personal (Part 1)",
     excerpt: "A framework for giving AI enough structured context to become a personalized operating layer instead of a generic assistant.",
-    category: "AI Systems",
+    category: "Building the ultimate Productivity AI tool",
     date: "2026",
     readTime: "5 min",
+    featured: false,
+    series: { name: "Building the ultimate Productivity AI tool", part: 1 },
+  },
+  {
+    slug: "turning-gpt-into-productivity-agent",
+    title: "Turning GPT into a Personalized Productivity Agent (Part 2)",
+    excerpt: "The Prompt + Memory Pack framework — upgrade any AI assistant into a productivity system that understands who you are.",
+    category: "Building the ultimate Productivity AI tool",
+    date: "2026",
+    readTime: "12 min",
+    featured: false,
+    series: { name: "Building the ultimate Productivity AI tool", part: 2 },
   },
 ];
 
 export const WRITING_CATEGORIES = [
   "All",
   "Build Logs",
-  "AI Systems",
-  "Product Thinking",
-  "Career",
+  "Building the ultimate Productivity AI tool",
 ];
 
 export function getWriting(slug: string) {

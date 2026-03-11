@@ -1,5 +1,9 @@
 # Build an AGENT That Actually Understands You
 
+*Part 1 of **Building the ultimate Productivity AI tool** — a series on turning AI into a personal operating system. Continue to [Part 2: Memory Packs](/writing/turning-gpt-into-productivity-agent), or explore [LifeOS](https://github.com/agravans/lifeOS) — the full system I'm building.*
+
+---
+
 Most people use AI by starting from scratch every time.
 
 New chat. New prompt. Same context explained again. Same goals repeated again. Same frustration when the model gives something generic, bloated, or slightly off.
@@ -51,5 +55,4 @@ If you want to try it, take the prompt, answer it honestly — even roughly — 
 
 I'll keep expanding this work with more prompt packs, question banks, and systems for different goals.
 
-You can explore more of my writing and work here:
-**[https://agravans.github.io/writing](https://agravans.github.io/writing)**
+Explore more of my [writing](/writing) and [projects](/projects).

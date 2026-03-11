@@ -60,14 +60,35 @@ export function WritingDetail() {
                   strong: ({ children }) => <strong className="text-[var(--text)] font-semibold">{children}</strong>,
                   ul: ({ children }) => <ul className="list-disc pl-6 space-y-2 my-4 text-[var(--text-muted)]">{children}</ul>,
                   li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                  pre: ({ children }) => (
+                    <pre className="my-6 overflow-x-auto rounded-lg border border-white/10 bg-white/[0.03] p-4 font-mono text-sm text-[var(--text-muted)]">
+                      {children}
+                    </pre>
+                  ),
+                  code: ({ className, children }) =>
+                    className ? (
+                      <code className={className}>{children}</code>
+                    ) : (
+                      <code className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-sm">{children}</code>
+                    ),
                   a: ({ href, children }) => {
+                    const isInternal = href?.startsWith("/") && !href?.startsWith("//");
                     const isPromptLink = href?.includes("docs.google.com/document/d/1w9q2UBhmilLC8rC_x65RTdTrsZb3l5_ryAosDr5uaFk");
+                    const className = isPromptLink ? "prompt-doc-link" : "";
+                    if (isInternal && href) {
+                      return (
+                        <Link to={href} className={className || "text-[var(--accent)] hover:underline"}>
+                          {children}
+                          {isPromptLink && " →"}
+                        </Link>
+                      );
+                    }
                     return (
                       <a
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={isPromptLink ? "prompt-doc-link" : ""}
+                        className={className || "text-[var(--accent)] hover:underline"}
                       >
                         {children}
                         {isPromptLink && " →"}

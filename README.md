@@ -4,6 +4,13 @@ Professional portfolio for Subandhu Agravanshi, AI Engineer with 3+ years in Gen
 
 **Live:** https://agravans.github.io
 
+## Featured builds (also on GitHub)
+
+| Project | Repo | Focus |
+|--------|------|--------|
+| **LifeOS** | [lifeOS](https://github.com/agravans/lifeOS) | AI-native personal OS — Next.js 16, Prisma, aggregates, assistant |
+| **VideoTranslation** | [videoTranslation](https://github.com/agravans/videoTranslation) | L&D dubbing to 11+ Indian languages — FastAPI, Celery, Whisper, Sarvam, Claude, Next.js 15 |
+
 ## Tech Stack
 
 - **React 19** + **TypeScript**

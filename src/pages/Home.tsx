@@ -69,9 +69,9 @@ export function Home() {
               <GlowCard className="rounded-3xl border-cyan-400/20 bg-gradient-to-br from-white/[0.08] to-white/[0.03]">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Currently Building</h3>
                 <ul className="space-y-3 text-sm">
-                  <li>• LifeOS — AI-native personal operating system</li>
+                  <li>• LifeOS — AI-native personal OS (missions, goals, aggregates, assistant)</li>
+                  <li>• VideoTranslation — L&D dubbing to 11+ Indian languages (FastAPI + Celery + Next.js)</li>
                   <li>• Agentic workflows for execution and planning</li>
-                  <li>• Multimodal storytelling / video AI systems</li>
                   <li>• Writing on useful AI systems beyond demos</li>
                 </ul>
                 <div className="mt-6 border-t border-white/10 pt-4 text-sm text-[var(--text-dim)]">
@@ -200,7 +200,7 @@ export function Home() {
       <Section className="border-t border-white/10">
         <SectionHeading
           title="Now"
-          description="Right now I'm focused on AI-native productivity systems, agentic execution flows, multimodal experiences, and writing more about useful AI product design."
+          description="LifeOS, VideoTranslation (regional dubbing for L&D), agentic execution, multimodal workflows, and writing on useful AI product design."
         />
         <Link to="/now">
           <Button variant="secondary">View Now Page</Button>

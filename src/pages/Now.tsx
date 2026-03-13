@@ -7,7 +7,11 @@ import { Button } from "../components/ui/Button";
 import { Link } from "react-router-dom";
 
 const FOCUS = {
-  building: ["LifeOS", "Agentic execution systems", "Multimodal workflows"],
+  building: [
+    "LifeOS (personal OS + AI assistant + write-through analytics)",
+    "VideoTranslation — regional L&D dubbing pipeline (STT → translate → QA → TTS → sync)",
+    "Agentic execution systems",
+  ],
   thinking: ["Useful AI products", "Memory and orchestration", "Better human-AI interfaces"],
   writing: ["Building LifeOS from personal chaos", "The 50 Questions That Make AI Personal", "Turning GPT into a Personalized Productivity Agent"],
   learning: ["LangGraph patterns", "Multimodal UX", "Cost-efficient inference"],

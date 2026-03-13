@@ -17,6 +17,37 @@ export const FLAGSHIP_PROJECTS = [
     links: { github: "https://github.com/agravans/lifeOS", demo: null },
   },
   {
+    slug: "video-translation-platform",
+    title: "AI L&D Video Translation (Regional Dubbing)",
+    tagline:
+      "End-to-end pipeline: transcribe, translate, QA, TTS dub, and subtitle—enterprise L&D video in 11+ Indian languages with a human review gate.",
+    summary:
+      "FastAPI + Celery eight-stage pipeline (FFmpeg, Whisper, Sarvam Mayura/Bulbul, Claude QA); Next.js 15 portal; BFSI glossary; Docker.",
+    overview:
+      "Full-stack platform for BFSI compliance training and L&D video localized to regional languages. Backend: FastAPI REST (upload, job status, review, download), Celery + Redis for async jobs, eight-stage pipeline—ingest/audio extract (FFmpeg), STT (faster-whisper), translation (Sarvam Mayura), QA and glossary enforcement (Claude + 150+ BFSI terms in Hindi/Tamil), TTS dubbing (Sarvam Bulbul v3), audio sync, SRT burn-in, delivery. Frontend: Next.js 15 app—dashboard, job upload, per-job detail/downloads, per-language human review UI for compliance-critical copy. Ops: docker-compose for API, worker, Redis, and frontend. Economics: ~₹18–30/min/language COGS vs. traditional agency dubbing—designed for scaled L&D programs.",
+    category: "Applied AI",
+    problem:
+      "Enterprise L&D and compliance video in one language excludes most of India; manual dubbing and agency workflows are slow, expensive, and hard to audit for regulated terms.",
+    whyMatters:
+      "BFSI and regulated teams need repeatable, reviewable localization—not one-off dubbing—with glossary-aware QA before audio ships.",
+    outcome:
+      "Shipped 8-stage async pipeline with human-in-the-loop review, BFSI glossary module, and Next.js operator portal; open repo with CLI and Docker paths for reproducible runs.",
+    stack: [
+      "FastAPI",
+      "Celery",
+      "Redis",
+      "Next.js 15",
+      "Whisper",
+      "Sarvam AI",
+      "Claude",
+      "FFmpeg",
+      "Docker",
+    ],
+    role: "Founder & Engineer",
+    timeline: "2025 – Present",
+    links: { github: "https://github.com/agravans/videoTranslation", demo: null },
+  },
+  {
     slug: "multimodal-film-stack",
     title: "AI Film / Multimodal Video Stack",
     tagline: "Agentic film generation platform—screenplay to shots with character and environment consistency.",
@@ -69,7 +100,16 @@ export const SUPPORTING_PROJECTS = [
   { slug: "video-game-rec", title: "Video Game Recommendation", desc: "Cosine similarity from 30k Steam/Stadia reviews; text feature engineering.", stack: ["NLP", "Recommendation"], category: "Research" },
 ];
 
-export const PROJECT_FILTERS = ["All", "RAG", "Agents", "Multimodal", "Workflow AI", "Research", "Product Systems"];
+export const PROJECT_FILTERS = [
+  "All",
+  "Applied AI",
+  "RAG",
+  "Agents",
+  "Multimodal",
+  "Workflow AI",
+  "Research",
+  "Product Systems",
+];
 
 export function getProject(slug: string) {
   return FLAGSHIP_PROJECTS.find((p) => p.slug === slug) ?? SUPPORTING_PROJECTS.find((p) => p.slug === slug);

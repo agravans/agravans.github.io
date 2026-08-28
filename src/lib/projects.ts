@@ -3,13 +3,13 @@ export type ProjectLink = { github?: string; demo?: string };
 export type Lane =
   | "Agentic AI"
   | "Generative Media"
-  | "Entertainment Intelligence"
+  | "Applied Research"
   | "Product Systems";
 
 export const LANE_ORDER: Lane[] = [
   "Agentic AI",
   "Generative Media",
-  "Entertainment Intelligence",
+  "Applied Research",
   "Product Systems",
 ];
 
@@ -27,9 +27,9 @@ export const LANE_META: Record<
     hint: "Film, voice, dubbing, and audio generation pipelines.",
     tone: "amber",
   },
-  "Entertainment Intelligence": {
-    label: "Entertainment Intelligence",
-    hint: "Fan demand, industry needs, sentiment, and franchise risk.",
+  "Applied Research": {
+    label: "Research & Insights",
+    hint: "Demand signals, sentiment, clustering, and evidence-backed analysis.",
     tone: "rose",
   },
   "Product Systems": {
@@ -124,10 +124,10 @@ export const FLAGSHIP_PROJECTS = [
     title: "FanPulse",
     tagline: "AI that turns live fan discourse into industry needs, demand themes and franchise-risk insights.",
     summary: "Local multi-agent extraction over 138k Reddit posts: industry needs, HDBSCAN clustering, signal scoring, grounded quotes.",
-    overview: "FanPulse is an entertainment-intelligence product for creative, marketing and franchise teams. The AI layer is the product: multi-agent Ollama extraction reads noisy Reddit threads and turns them into structured industry needs — what to make, what to avoid, which story or character ideas are emerging, which marketing angles will land, and which franchise risks are compounding. Every extracted insight must include a source quote that appears in the original post plus a permalink; ungrounded claims are discarded. Repeated needs are clustered with HDBSCAN, scored for publishability, and written into opportunity/risk briefs, a franchise-health snapshot, and a concept-to-demand test. Runtime snapshot: 138,168 posts across 108 subreddits, 1,292 extracted insights, 917 scored signal clusters.",
+    overview: "FanPulse is a demand-intelligence product for creative, marketing and strategy teams. The AI layer is the product: multi-agent Ollama extraction reads noisy public discourse and turns it into structured industry needs — what to make, what to avoid, which ideas are emerging, which angles will land, and which risks are compounding. Every extracted insight must include a source quote that appears in the original post plus a permalink; ungrounded claims are discarded. Repeated needs are clustered with HDBSCAN, scored for publishability, and written into opportunity/risk briefs, a health snapshot, and a concept-to-demand test. Runtime snapshot: 138,168 posts across 108 subreddits, 1,292 extracted insights, 917 scored signal clusters.",
     category: "Research",
-    lane: "Entertainment Intelligence" as Lane,
-    problem: "Entertainment teams guess what fans want. Open discussion is noisy, anecdotal, and hard to turn into a meeting-ready brief with evidence.",
+    lane: "Applied Research" as Lane,
+    problem: "Teams guess what their audience wants. Open discussion is noisy, anecdotal, and hard to turn into a meeting-ready brief with evidence.",
     whyMatters: "Greenlights, marketing and franchise planning need ranked industry needs with counter-evidence and source links, not a vibe check from a handful of threads.",
     outcome: "AI extraction over 138k posts across 108 subreddits produced 917 scored demand clusters, grounded opportunity/risk briefs and franchise-health snapshots that surface what the industry should make, avoid and track.",
     stack: ["FastAPI", "Ollama", "HDBSCAN", "sqlite-vec", "nomic-embed-text", "Python"],
@@ -232,7 +232,7 @@ export const FLAGSHIP_PROJECTS = [
     summary: "Enterprise-grade retrieval and sentiment pipeline. 20k+ multimodal reviews → 60+ categories.",
     overview: "Hybrid RAG with taxonomy generation and multimodal sentiment analysis at scale. Ingest pipeline for millions of documents. Deployed as MCP server. Cost optimization: $8→$0.30 per input. Classification accuracy improved from 33% to 88% in 3 refinement iterations. Batch processing, observability, and production hardening. Proves deployability for enterprise AI systems.",
     category: "RAG",
-    lane: "Entertainment Intelligence" as Lane,
+    lane: "Applied Research" as Lane,
     problem: "Enterprises need AI systems that ingest millions of documents and surface structured insights at controlled cost.",
     whyMatters: "Proves deployability—batch processing, cost optimization, observability, and production hardening.",
     outcome: "Deployed as MCP server. 33%→88% classification accuracy in 3 refinement iterations.",
@@ -246,7 +246,7 @@ export const FLAGSHIP_PROJECTS = [
 export const SUPPORTING_PROJECTS = [
   { slug: "audio-intelligence", title: "Audio Intelligence Studio", desc: "16-stage ML pipeline: VAD, faster-whisper, pyannote, BERTopic, FAISS RAG.", stack: ["FastAPI", "Next.js", "Ollama"], category: "Agents", lane: "Generative Media" as Lane },
   { slug: "skive-ai", title: "skive.ai", desc: "Multi-agent Claude workflow to structure 7,000 KYC docs; 10hr verification cut.", stack: ["Claude", "Multi-agent"], category: "Workflow AI", lane: "Agentic AI" as Lane },
-  { slug: "video-game-rec", title: "Video Game Recommendation", desc: "Cosine similarity from 30k Steam/Stadia reviews; text feature engineering.", stack: ["NLP", "Recommendation"], category: "Research", lane: "Entertainment Intelligence" as Lane },
+  { slug: "video-game-rec", title: "Video Game Recommendation", desc: "Cosine similarity from 30k Steam/Stadia reviews; text feature engineering.", stack: ["NLP", "Recommendation"], category: "Research", lane: "Applied Research" as Lane },
 ];
 
 export const PROJECT_FILTERS = ["All", ...LANE_ORDER] as const;

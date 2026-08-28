@@ -29,7 +29,7 @@ export function Projects() {
         <PageHeader
           eyebrow="Work"
           title="Projects"
-          description="Agentic AI, generative media, and entertainment intelligence — systems that move past demos."
+          description="Agentic AI, generative media, and applied research — systems that move past demos."
         />
       </Section>
 

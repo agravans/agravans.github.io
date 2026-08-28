@@ -26,7 +26,7 @@ const EXPERIENCE_SNAPSHOT = [
 const LANE_PROJECTS: Record<Lane, string[]> = {
   "Agentic AI": ["enterprise-knowledge-agent", "research-gap-finder"],
   "Generative Media": ["multimodal-film-stack", "video-translation-platform"],
-  "Entertainment Intelligence": ["fanpulse", "enterprise-rag-sentiment"],
+  "Applied Research": ["fanpulse", "enterprise-rag-sentiment"],
   "Product Systems": ["lifeos"],
 };
 
@@ -57,11 +57,11 @@ export function Home() {
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
             <div className="space-y-5 lg:col-span-7">
               <p className="text-xs font-mono uppercase tracking-wider text-[var(--media)]">
-                Agentic AI · Generative Media · Entertainment
+                Agentic AI · Generative Media · Applied Research
               </p>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Subandhu Agravanshi</h1>
               <p className="text-lg text-[var(--text-muted)] leading-relaxed">
-                Generative AI / Applied AI Engineer. Production agentic systems, generative media, and entertainment intelligence across enterprise, gaming and film.
+                Generative AI / Applied AI Engineer. Production agentic, RAG, and generative media systems across enterprise, fintech, gaming and media.
               </p>
               <p className="text-[var(--text-muted)] leading-relaxed">
                 3.5+ years taking AI from experimentation to production: serving concurrent users at scale, cost and latency optimization, evaluation, measurable business impact.
@@ -111,7 +111,7 @@ export function Home() {
         <SectionHeading
           eyebrow="Skills in practice"
           title="Where the work actually lives"
-          description="Agentic systems, generative media, and entertainment intelligence — each lane tied to shipped projects."
+          description="Agentic systems, generative media, and applied research — each lane tied to shipped projects."
         />
         <div className="grid gap-5 md:grid-cols-2">
           {LANE_ORDER.map((lane, i) => {
@@ -145,7 +145,7 @@ export function Home() {
       <Section id="work" className="border-t border-white/10">
         <SectionHeading
           title="Selected Work"
-          description="Flagship builds across film, fandom intelligence, org-scale agents, and product systems."
+          description="Flagship builds across agents, generative media, applied research, and product systems."
         />
         <div className="grid gap-6 md:grid-cols-2">
           {featured.map((p, i) => (
@@ -246,7 +246,7 @@ export function Home() {
             Building an AI product, exploring a role, or just want to talk ideas?
           </h2>
           <p className="mx-auto mb-8 max-w-xl text-[var(--text-muted)]">
-            I'm always open to conversations around AI systems, generative media, entertainment intelligence, and thoughtful execution.
+            I'm always open to conversations around AI systems, generative media, applied research, and thoughtful execution.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="mailto:subandwho@gmail.com"><Button>Email Me</Button></a>

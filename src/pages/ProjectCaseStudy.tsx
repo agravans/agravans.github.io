@@ -27,19 +27,6 @@ export function ProjectCaseStudy() {
   const p = project as FlagshipProject;
   const related = FLAGSHIP_PROJECTS.filter((x) => x.slug !== p.slug).slice(0, 3);
 
-  const decisions = [
-    { title: "Architecture", why: "Chosen for scalability and clear separation of concerns.", tradeoff: "Added complexity vs flexibility." },
-    { title: "Orchestration", why: "LangGraph for agents; explicit state and routing.", tradeoff: "Learning curve vs control." },
-    { title: "Storage", why: "Write-through aggregates reduce query load.", tradeoff: "Eventual consistency vs read performance." },
-  ];
-
-  const challenges = [
-    "Retrieval precision and relevance tuning",
-    "Hallucination risk and structured outputs",
-    "Prompt fragility and versioning",
-    "Cost and latency optimization",
-  ];
-
   return (
     <>
       <article className="pt-24 pb-16 sm:pt-28 sm:pb-20">
@@ -100,58 +87,64 @@ export function ProjectCaseStudy() {
 
           <div className="max-w-3xl space-y-16">
             <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">Overview</h2>
-              <p className="text-[var(--text-muted)] leading-relaxed">{p.summary}</p>
-              <p className="mt-4 text-[var(--text-muted)] leading-relaxed">{p.whyMatters}</p>
-            </section>
-
-            <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">The Problem</h2>
+              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">Problem</h2>
               <p className="text-[var(--text-muted)] leading-relaxed">{p.problem}</p>
             </section>
 
             <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What I Built</h2>
+              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">Why it mattered</h2>
+              <p className="text-[var(--text-muted)] leading-relaxed">{p.whyMatters}</p>
+            </section>
+
+            <section>
+              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What I built</h2>
               <p className="text-[var(--text-muted)] leading-relaxed">
                 {"overview" in p && p.overview ? p.overview : p.summary + " " + p.outcome}
               </p>
             </section>
 
-            <section>
-              <h2 className="mb-6 text-xl font-semibold text-[var(--accent)]">Key Decisions</h2>
-              <div className="space-y-4">
-                {decisions.map((d) => (
-                  <GlowCard key={d.title} className="p-5">
-                    <h3 className="mb-2 font-semibold">{d.title}</h3>
-                    <p className="mb-2 text-sm text-[var(--text-muted)]"><strong>Why:</strong> {d.why}</p>
-                    <p className="text-sm text-[var(--text-dim)]"><strong>Tradeoff:</strong> {d.tradeoff}</p>
-                  </GlowCard>
+            {"caseStudy" in p && p.caseStudy && (
+              <>
+                {(
+                  [
+                    ["Users / ICP", p.caseStudy.users],
+                    ["Constraints", p.caseStudy.constraints],
+                    ["Architecture", p.caseStudy.architecture],
+                    ["Data", p.caseStudy.data],
+                    ["Model / agent design", p.caseStudy.modelAgent],
+                    ["Backend", p.caseStudy.backend],
+                    ["Evaluation", p.caseStudy.evaluation],
+                    ["Deployment", p.caseStudy.deployment],
+                    ["Latency / cost", p.caseStudy.latencyCost],
+                    ["Failure modes", p.caseStudy.failureModes],
+                  ] as const
+                ).map(([title, body]) => (
+                  <section key={title}>
+                    <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">{title}</h2>
+                    <p className="text-[var(--text-muted)] leading-relaxed whitespace-pre-wrap">{body}</p>
+                  </section>
                 ))}
-              </div>
-            </section>
+              </>
+            )}
 
             <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">Challenges</h2>
-              <ul className="space-y-2 text-[var(--text-muted)]">
-                {challenges.map((c) => (
-                  <li key={c} className="flex items-start gap-2">
-                    <span className="text-[var(--text-dim)]">•</span> {c}
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What Changed</h2>
+              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">Impact</h2>
               <p className="text-[var(--text-muted)] leading-relaxed">{p.outcome}</p>
             </section>
 
-            <section>
-              <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What I'd Build in V2</h2>
-              <p className="text-[var(--text-muted)] leading-relaxed">
-                Deeper multimodal integration, offline-first support, and more adaptive orchestration based on user context.
-              </p>
-            </section>
+            {"caseStudy" in p && p.caseStudy ? (
+              <section>
+                <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What I would improve next</h2>
+                <p className="text-[var(--text-muted)] leading-relaxed">{p.caseStudy.next}</p>
+              </section>
+            ) : (
+              <section>
+                <h2 className="mb-4 text-xl font-semibold text-[var(--accent)]">What I would improve next</h2>
+                <p className="text-[var(--text-muted)] leading-relaxed">
+                  Deeper evaluation, clearer deployment story, and more adaptive orchestration based on user context.
+                </p>
+              </section>
+            )}
           </div>
         </Container>
       </article>

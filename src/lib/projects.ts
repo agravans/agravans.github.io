@@ -1,6 +1,48 @@
 export type ProjectLink = { github?: string; demo?: string };
 
+export type CaseStudy = {
+  users: string;
+  constraints: string;
+  architecture: string;
+  data: string;
+  modelAgent: string;
+  backend: string;
+  evaluation: string;
+  deployment: string;
+  latencyCost: string;
+  failureModes: string;
+  next: string;
+};
+
 export const FLAGSHIP_PROJECTS = [
+  {
+    slug: "enterprise-knowledge-agent",
+    title: "Enterprise Knowledge & Analytics Agent",
+    tagline: "Anonymized architecture for org-scale knowledge search, Text-to-SQL and analytics agents.",
+    summary: "Generalized pattern from production enterprise agent work: query understanding, routing, RAG, SQL tools, reranking, model gateway, warehouse, tracing.",
+    overview: "User questions flow through query understanding, then routing to RAG, SQL or specialized skills. A reranker and model gateway (Bedrock/LiteLLM-style) sit in front of the warehouse. Outputs are evidence, analytics and dashboards, with tracing and evaluation. This page describes a generalized architecture, not confidential implementation details.",
+    category: "Agents",
+    problem: "Enterprise teams cannot reliably ask organization-level questions across knowledge bases and warehouse tables, then get grounded analysis without a data team in the loop.",
+    whyMatters: "This is the FDE-shaped problem: ambiguous workflow, heterogeneous data, retrieval plus SQL, evaluation, cost and adoption.",
+    outcome: "Pattern used in production org-scale agents: +30% retrieval accuracy, $1.30 to $0.60 per query, +50% SQL generation precision, concurrent users at scale.",
+    stack: ["Python", "Databricks", "SQL", "RAG", "Reranking", "LiteLLM", "OpenWebUI"],
+    role: "Generative AI Engineer",
+    timeline: "2026",
+    links: { github: null, demo: null },
+    caseStudy: {
+      users: "Internal business, data and operations teams asking organization-level questions.",
+      constraints: "Cannot publish customer data, table schemas or proprietary prompts. Architecture is generalized.",
+      architecture: "User -> query understanding -> routing -> RAG / SQL / specialized skills -> reranker -> model gateway -> data warehouse -> evidence / analytics -> tracing and evaluation.",
+      data: "Enterprise knowledge bases plus structured warehouse tables. Schema/table metadata used for routing and Text-to-SQL context.",
+      modelAgent: "Specialized agents and skills. Cross-encoder retrieval with Cohere Rerank-class reranking. Claude Opus-family models via a Bedrock/LiteLLM gateway.",
+      backend: "Python orchestration, OpenWebUI front door, Databricks SQL execution, dashboard/insight generation.",
+      evaluation: "Retrieval accuracy, SQL generation precision, cost per query, latency, groundedness of analytical answers.",
+      deployment: "Organization-wide internal deployment serving concurrent users at scale. Not claimed as an external customer engagement.",
+      latencyCost: "Retrieval cost $1.30 to $0.60 per query (54%). Routing and metadata-aware context to keep tokens down.",
+      failureModes: "Wrong table selection, incomplete schema context, retrieval of stale docs, over-long context, tool-call loops. Mitigated with routing, metadata, reranking and evals.",
+      next: "Permissions/ACL-aware retrieval, richer eval harness, incident playbooks, and a public FDE-style demo on an open dataset.",
+    },
+  },
   {
     slug: "lifeos",
     title: "LifeOS",
@@ -15,6 +57,19 @@ export const FLAGSHIP_PROJECTS = [
     role: "Founder & Engineer",
     timeline: "2024 – Present",
     links: { github: "https://github.com/agravans/lifeOS", demo: null },
+    caseStudy: {
+      users: "Ambitious builders who need one system for missions, goals, tasks and an assistant that can propose and apply changes.",
+      constraints: "No separate backend service. Next.js is the backend. Must stay fast on Home/Analytics.",
+      architecture: "App Router + Server Actions + Prisma/PostgreSQL. Gateway runtime routes to specialist agents. Propose/apply/undo with an audit ledger.",
+      data: "Missions, goals, projects, tasks, blocks, habits. Write-through DailyAggregate and WeeklyAggregate tables.",
+      modelAgent: "Gateway-routed assistant with capability packs, skill summaries and HITL apply.",
+      backend: "JWT auth, React.cache / unstable_cache, cascading progress recalculation, tag-based invalidation.",
+      evaluation: "Query-load reduction on Home/Analytics (15-25 live joins to 1-3 reads). Manual review of propose/apply plans.",
+      deployment: "Vercel. Production-style personal OS, not a toy chatbot wrapper.",
+      latencyCost: "Aggregates and caching keep dashboard reads small. Assistant calls are gated by propose/apply.",
+      failureModes: "Stale aggregates, double-apply, over-broad tool access. Mitigated with planId idempotency, undo, scoped capability packs.",
+      next: "Docker/Kubernetes, OpenTelemetry, queues, rate limits and load tests once those are implemented for real.",
+    },
   },
   {
     slug: "video-translation-platform",
@@ -49,18 +104,31 @@ export const FLAGSHIP_PROJECTS = [
   },
   {
     slug: "multimodal-film-stack",
-    title: "AI Film / Multimodal Video Stack",
-    tagline: "Agentic film generation platform—screenplay to shots with character and environment consistency.",
-    summary: "Agentic workflows for execution and planning.",
-    overview: "Orchestration layer with script, character, environment, and director agents. Reusable characters, scenes, and worlds. LangGraph-based multi-agent workflow: screenplay parsing, character and environment state, shot planning, and consistent generation. Enables long-form, director-controlled output—not single-scene clips.",
+    title: "Fiction.ai",
+    tagline: "Multi-agent filmmaking — screenplay to shots with character and environment consistency.",
+    summary: "Director, Writer, Casting, Art, Cinematography and Editing agents; fal.ai / Runway / Kling / Seedance / Veo; ImageKit.io CDN; ElevenLabs dialogue.",
+    overview: "LangGraph orchestration with Director, Writer, Casting, Art, Cinematography and Editing agents. Generation through fal.ai, Runway, Kling, Seedance and Veo. Character and environment assets stored on ImageKit.io for visual consistency. ElevenLabs for character voice and dialogue. Director critique loop for shot approval. Enables long-form, director-controlled output—not single-scene clips.",
     category: "Multimodal",
     problem: "Generative video tools produce clips, not coherent narratives. No orchestration for long-form, director-controlled output.",
     whyMatters: "Creators and studios need AI that understands story structure, shot planning, and cinematic coherence—not just single-scene generation.",
-    outcome: "Orchestration layer with script, character, environment, and director agents. Reusable characters, scenes, worlds.",
-    stack: ["LangGraph", "OpenAI", "Anthropic", "Python", "FastAPI"],
+    outcome: "Multi-agent film stack with reusable characters, scenes and worlds; fal.ai + ImageKit.io consistency layer; ElevenLabs dialogue; director critique loop.",
+    stack: ["LangGraph", "fal.ai", "ImageKit.io", "ElevenLabs", "Runway", "Kling", "FastAPI"],
     role: "Builder",
     timeline: "2024 – Present",
     links: { github: null, demo: null },
+    caseStudy: {
+      users: "Creators who need coherent long-form visual stories, not one-off clips.",
+      constraints: "Hosted generation APIs, not self-trained video models. Consistency must come from orchestration and asset management.",
+      architecture: "LangGraph agents for Director, Writer, Casting, Art, Cinematography and Editing. Director critique loop for shot approval.",
+      data: "Character and environment assets on ImageKit.io. Screenplay state passed between agents.",
+      modelAgent: "fal.ai, Runway, Kling, Seedance, Veo for visuals. ElevenLabs for dialogue. No claim of training DiT/FSDP stacks.",
+      backend: "Python orchestration, asset CDN, generation job sequencing.",
+      evaluation: "Director-agent critique against shot requirements and reference frames. Qualitative consistency review.",
+      deployment: "Builder project / studio workflow, not a public SaaS claim.",
+      latencyCost: "Generation cost dominated by video/image APIs. Asset reuse via ImageKit.io reduces regen.",
+      failureModes: "Character drift, environment mismatch, weak shot composition. Mitigated with references, CDN identity, critique loop.",
+      next: "A genuine LoRA fine-tune on an open image/video model with dataset cards, VRAM/latency profiles and failure analysis.",
+    },
   },
   {
     slug: "research-gap-finder",

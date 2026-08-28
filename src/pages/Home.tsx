@@ -11,9 +11,10 @@ import { FLAGSHIP_PROJECTS } from "../lib/projects";
 import { WRITING } from "../lib/writing";
 
 const EXPERIENCE_SNAPSHOT = [
-  { role: "Generative AI Engineer", company: "Gameopedia", period: "Dec 2024 – Present", bullets: ["Video agents; 3k+ videos, +1.2% watch-time", "Cost $8→$0.30/input; 33%→88% accuracy"] },
-  { role: "ML Engineer", company: "Stealth Fintech", period: "Aug – Nov 2024", bullets: ["Hybrid RAG for 1M prospectuses", "Equity Research Agent, 7 functionalities"] },
-  { role: "ML Engineer", company: "Arcesium (DE Shaw)", period: "Mar 2023 – Aug 2024", bullets: ["350 Perl→Python; 98% tax classifier", "32%→80% test coverage, 24k cases"] },
+  { role: "Generative AI Engineer", company: "Pocket FM", period: "Jun 2026 – Present", bullets: ["Org-level knowledge + Databricks SQL agents; concurrent users at scale", "Retrieval +30%; $1.30 to $0.60/query; SQL precision +50%"] },
+  { role: "Generative AI Engineer", company: "Gameopedia", period: "Dec 2024 – Jun 2026", bullets: ["Video agents; 3k+ videos, +1.2% watch-time", "Cost $8→$0.30/input; 33%→88% accuracy"] },
+  { role: "ML Engineer", company: "Stealth Fintech", period: "Aug – Nov 2024", bullets: ["Hybrid RAG for 1M prospectuses", "Equity Research Agent, 7+ workflows"] },
+  { role: "Forward Deployed SWE, ML", company: "Arcesium (DE Shaw)", period: "Mar 2023 – Aug 2024", bullets: ["98% tax classifier across 250+ doc types", "32%→80% test coverage, 24k cases"] },
 ];
 
 const CAPABILITIES = [
@@ -32,10 +33,10 @@ const PHILOSOPHY = [
 ];
 
 const PROOF = [
-  "3+ years in AI/ML systems",
-  "GenAI / RAG / Agents / Multimodal",
-  "Startup + enterprise exposure",
-  "Product-minded builder",
+  "3.5+ years in production AI",
+  "Cost & latency optimization",
+  "AI engineering and evals",
+  "Measurable product impact",
 ];
 
 export function Home() {
@@ -50,10 +51,10 @@ export function Home() {
               </p>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Subandhu Agravanshi</h1>
               <p className="text-lg text-[var(--text-muted)] leading-relaxed">
-                Building production-grade LLM, RAG, agentic, and multimodal systems.
+                Generative AI / Applied AI Engineer. Production agentic, retrieval and ML systems across enterprise, fintech, gaming and media.
               </p>
               <p className="text-[var(--text-muted)] leading-relaxed">
-                I design and ship AI products across retrieval, orchestration, workflow automation, research systems, and video intelligence.
+                3.5+ years taking AI from experimentation to production: serving concurrent users at scale, cost and latency optimization, evaluation, measurable business impact.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link to="/projects"><Button>View Projects</Button></Link>
@@ -70,8 +71,8 @@ export function Home() {
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Currently Building</h3>
                 <ul className="space-y-3 text-sm">
                   <li>• LifeOS — AI-native personal OS (missions, goals, aggregates, assistant)</li>
+                  <li>• Fiction.ai — multi-agent filmmaking with fal.ai, ImageKit.io, ElevenLabs</li>
                   <li>• VideoTranslation — L&D dubbing to 11+ Indian languages (FastAPI + Celery + Next.js)</li>
-                  <li>• Agentic workflows for execution and planning</li>
                   <li>• Writing on useful AI systems beyond demos</li>
                 </ul>
                 <div className="mt-6 border-t border-white/10 pt-4 text-sm text-[var(--text-dim)]">
@@ -200,7 +201,7 @@ export function Home() {
       <Section className="border-t border-white/10">
         <SectionHeading
           title="Now"
-          description="LifeOS, VideoTranslation (regional dubbing for L&D), agentic execution, multimodal workflows, and writing on useful AI product design."
+          description="LifeOS, Fiction.ai, VideoTranslation, agentic execution, and writing on useful AI product design."
         />
         <Link to="/now">
           <Button variant="secondary">View Now Page</Button>

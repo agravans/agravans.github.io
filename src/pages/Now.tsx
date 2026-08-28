@@ -9,15 +9,15 @@ import { Link } from "react-router-dom";
 const FOCUS = {
   building: [
     "LifeOS (personal OS + AI assistant + write-through analytics)",
+    "Fiction.ai — multi-agent filmmaking (fal.ai, ImageKit.io, ElevenLabs)",
     "VideoTranslation — regional L&D dubbing pipeline (STT → translate → QA → TTS → sync)",
-    "Agentic execution systems",
   ],
   thinking: ["Useful AI products", "Memory and orchestration", "Better human-AI interfaces"],
   writing: ["Building LifeOS from personal chaos", "The 50 Questions That Make AI Personal", "Turning GPT into a Personalized Productivity Agent"],
   learning: ["LangGraph patterns", "Multimodal UX", "Cost-efficient inference"],
 };
 
-const STACK = ["Python", "FastAPI", "LangGraph", "Next.js", "Redis", "MongoDB", "Local/OSS tooling"];
+const STACK = ["Python", "FastAPI", "LangGraph", "Next.js", "PostgreSQL", "Databricks", "fal.ai", "Claude", "Gemini"];
 
 const QUESTIONS = [
   "What makes agent systems truly useful?",

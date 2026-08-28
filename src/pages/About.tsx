@@ -40,7 +40,7 @@ export function About() {
             Focused on grounded AI over flashy demos.
           </p>
           <p>
-            Plaksha University (Applied AI & Product) · KIIT (B.Tech CSE) · 3+ years in production AI. Based in India.
+            Plaksha University (Applied AI & Product) · KIIT (B.Tech CSE) · 3.5+ years building AI systems in production. Based in India.
             Interested in AI products, storytelling, systems, and building in public.
           </p>
         </div>

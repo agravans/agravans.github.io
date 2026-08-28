@@ -7,22 +7,28 @@ import { GlowCard } from "../components/ui/GlowCard";
 import { Tag } from "../components/ui/Tag";
 import { Button } from "../components/ui/Button";
 import { LinkArrow } from "../components/ui/LinkArrow";
-import { FLAGSHIP_PROJECTS } from "../lib/projects";
+import {
+  FLAGSHIP_PROJECTS,
+  HOME_FEATURED_SLUGS,
+  LANE_META,
+  LANE_ORDER,
+  type Lane,
+} from "../lib/projects";
 import { WRITING } from "../lib/writing";
 
 const EXPERIENCE_SNAPSHOT = [
-  { role: "Generative AI Engineer", company: "Pocket FM", period: "Jun 2026 – Present", bullets: ["Org-level knowledge + Databricks SQL agents; concurrent users at scale", "Retrieval +30%; $1.30 to $0.60/query; SQL precision +50%"] },
+  { role: "Generative AI Engineer", company: "Pocket FM", period: "Jun 2026 – Present", bullets: ["ReAct orchestrator + Text-to-SQL/analytics; 250+ concurrent users across domains", "Retrieval recall/accuracy +40%; cost reduction 54% ($1.30 to $0.60/query); SQL precision +50%"] },
   { role: "Generative AI Engineer", company: "Gameopedia", period: "Dec 2024 – Jun 2026", bullets: ["Video agents; 3k+ videos, +1.2% watch-time", "Cost $8→$0.30/input; 33%→88% accuracy"] },
   { role: "ML Engineer", company: "Stealth Fintech", period: "Aug – Nov 2024", bullets: ["Hybrid RAG for 1M prospectuses", "Equity Research Agent, 7+ workflows"] },
   { role: "Forward Deployed SWE, ML", company: "Arcesium (DE Shaw)", period: "Mar 2023 – Aug 2024", bullets: ["98% tax classifier across 250+ doc types", "32%→80% test coverage, 24k cases"] },
 ];
 
-const CAPABILITIES = [
-  { title: "LLM & RAG Systems", desc: "Grounded retrieval, reasoning pipelines, knowledge workflows, and search-heavy AI applications." },
-  { title: "Agentic Workflows", desc: "Multi-step systems, orchestration layers, tool use, memory, and execution flows." },
-  { title: "Multimodal AI", desc: "Video understanding, visual workflows, multimodal reasoning, and creative AI systems." },
-  { title: "AI Product Infrastructure", desc: "FastAPI backends, stateful workflows, evaluations, observability, and production-minded architecture." },
-];
+const LANE_PROJECTS: Record<Lane, string[]> = {
+  "Agentic AI": ["enterprise-knowledge-agent", "research-gap-finder"],
+  "Generative Media": ["multimodal-film-stack", "video-translation-platform"],
+  "Entertainment Intelligence": ["fanpulse", "enterprise-rag-sentiment"],
+  "Product Systems": ["lifeos"],
+};
 
 const PHILOSOPHY = [
   "Useful > flashy",
@@ -39,19 +45,23 @@ const PROOF = [
   "Measurable product impact",
 ];
 
+const featured = HOME_FEATURED_SLUGS
+  .map((slug) => FLAGSHIP_PROJECTS.find((p) => p.slug === slug))
+  .filter((p): p is (typeof FLAGSHIP_PROJECTS)[number] => Boolean(p));
+
 export function Home() {
   return (
     <>
-      <section className="pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
+      <section className="relative overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
         <Container size="wide">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
             <div className="space-y-5 lg:col-span-7">
-              <p className="text-xs font-mono uppercase tracking-wider text-[var(--text-dim)]">
-                AI Engineer · Builder · Writer
+              <p className="text-xs font-mono uppercase tracking-wider text-[var(--media)]">
+                Agentic AI · Generative Media · Entertainment
               </p>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Subandhu Agravanshi</h1>
               <p className="text-lg text-[var(--text-muted)] leading-relaxed">
-                Generative AI / Applied AI Engineer. Production agentic, retrieval and ML systems across enterprise, fintech, gaming and media.
+                Generative AI / Applied AI Engineer. Production agentic systems, generative media, and entertainment intelligence across enterprise, gaming and film.
               </p>
               <p className="text-[var(--text-muted)] leading-relaxed">
                 3.5+ years taking AI from experimentation to production: serving concurrent users at scale, cost and latency optimization, evaluation, measurable business impact.
@@ -67,13 +77,13 @@ export function Home() {
               </div>
             </div>
             <div className="lg:col-span-5">
-              <GlowCard className="rounded-3xl border-cyan-400/20 bg-gradient-to-br from-white/[0.08] to-white/[0.03]">
+              <GlowCard className="rounded-3xl border-teal-400/20 bg-gradient-to-br from-teal-400/[0.08] via-white/[0.03] to-amber-300/[0.06]">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Currently Building</h3>
                 <ul className="space-y-3 text-sm">
-                  <li>• LifeOS — AI-native personal OS (missions, goals, aggregates, assistant)</li>
                   <li>• Fiction.ai — multi-agent filmmaking with fal.ai, ImageKit.io, ElevenLabs</li>
-                  <li>• VideoTranslation — L&D dubbing to 11+ Indian languages (FastAPI + Celery + Next.js)</li>
-                  <li>• Writing on useful AI systems beyond demos</li>
+                  <li>• FanPulse — AI extraction of industry needs and franchise insights from live fandom</li>
+                  <li>• LifeOS — AI-native personal OS (missions, goals, gateway assistant)</li>
+                  <li>• VideoTranslation — L&D dubbing to 11+ Indian languages</li>
                 </ul>
                 <div className="mt-6 border-t border-white/10 pt-4 text-sm text-[var(--text-dim)]">
                   <p>Based in India</p>
@@ -97,13 +107,48 @@ export function Home() {
         </Container>
       </Section>
 
-      <Section id="work">
+      <Section>
+        <SectionHeading
+          eyebrow="Skills in practice"
+          title="Where the work actually lives"
+          description="Agentic systems, generative media, and entertainment intelligence — each lane tied to shipped projects."
+        />
+        <div className="grid gap-5 md:grid-cols-2">
+          {LANE_ORDER.map((lane, i) => {
+            const meta = LANE_META[lane];
+            const slugs = LANE_PROJECTS[lane];
+            const projects = slugs
+              .map((slug) => FLAGSHIP_PROJECTS.find((p) => p.slug === slug))
+              .filter((p): p is NonNullable<typeof p> => Boolean(p));
+            return (
+              <motion.div key={lane} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+                <GlowCard tone={meta.tone} className="h-full">
+                  <Tag tone={meta.tone}>{meta.label}</Tag>
+                  <p className="mt-3 text-sm text-[var(--text-muted)] leading-relaxed">{meta.hint}</p>
+                  <ul className="mt-4 space-y-2">
+                    {projects.map((p) => (
+                      <li key={p.slug}>
+                        <Link to={`/projects/${p.slug}`} className="text-sm font-medium hover:text-[var(--accent)]">
+                          {p.title}
+                        </Link>
+                        <p className="text-xs text-[var(--text-dim)]">{p.tagline}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </GlowCard>
+              </motion.div>
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section id="work" className="border-t border-white/10">
         <SectionHeading
           title="Selected Work"
-          description="A few systems and products I've built across AI, workflows, and multimodal experiences."
+          description="Flagship builds across film, fandom intelligence, org-scale agents, and product systems."
         />
         <div className="grid gap-6 md:grid-cols-2">
-          {FLAGSHIP_PROJECTS.map((p, i) => (
+          {featured.map((p, i) => (
             <motion.div
               key={p.slug}
               initial={{ opacity: 0, y: 16 }}
@@ -112,32 +157,19 @@ export function Home() {
               transition={{ delay: i * 0.05 }}
             >
               <Link to={`/projects/${p.slug}`}>
-                <GlowCard className="group h-full">
-                  <h3 className="mb-2 text-lg font-semibold group-hover:text-[var(--accent)]">{p.title}</h3>
+                <GlowCard className="group h-full" tone={LANE_META[p.lane].tone}>
+                  <Tag tone={LANE_META[p.lane].tone}>{LANE_META[p.lane].label}</Tag>
+                  <h3 className="mt-3 mb-2 text-lg font-semibold group-hover:text-[var(--accent)]">{p.title}</h3>
                   <p className="mb-3 text-sm text-[var(--text-muted)]">{p.tagline}</p>
                   <div className="mb-3 flex flex-wrap gap-2">
                     {p.stack.slice(0, 3).map((s) => (
-                      <Tag key={s}>{s}</Tag>
+                      <Tag key={s} tone={LANE_META[p.lane].tone}>{s}</Tag>
                     ))}
                   </div>
                   <p className="mb-4 text-sm text-[var(--text-dim)]">{p.outcome || p.whyMatters}</p>
                   <LinkArrow to={`/projects/${p.slug}`}>Read Case Study</LinkArrow>
                 </GlowCard>
               </Link>
-            </motion.div>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="border-t border-white/10">
-        <SectionHeading title="What I Build" />
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {CAPABILITIES.map((c, i) => (
-            <motion.div key={c.title} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-              <GlowCard>
-                <h3 className="mb-2 font-semibold text-[var(--accent)]">{c.title}</h3>
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{c.desc}</p>
-              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -201,7 +233,7 @@ export function Home() {
       <Section className="border-t border-white/10">
         <SectionHeading
           title="Now"
-          description="LifeOS, Fiction.ai, VideoTranslation, agentic execution, and writing on useful AI product design."
+          description="Fiction.ai, FanPulse, LifeOS, VideoTranslation, and writing on useful AI product design."
         />
         <Link to="/now">
           <Button variant="secondary">View Now Page</Button>
@@ -209,12 +241,12 @@ export function Home() {
       </Section>
 
       <Section className="border-t border-white/10">
-        <div className="rounded-2xl border border-cyan-400/20 bg-white/[0.05] p-8 text-center sm:p-12">
+        <div className="rounded-2xl border border-teal-400/20 bg-gradient-to-br from-teal-400/[0.07] to-amber-300/[0.05] p-8 text-center sm:p-12">
           <h2 className="mb-4 text-2xl font-bold">
             Building an AI product, exploring a role, or just want to talk ideas?
           </h2>
           <p className="mx-auto mb-8 max-w-xl text-[var(--text-muted)]">
-            I'm always open to conversations around AI systems, product direction, ambitious builds, and thoughtful execution.
+            I'm always open to conversations around AI systems, generative media, entertainment intelligence, and thoughtful execution.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="mailto:subandwho@gmail.com"><Button>Email Me</Button></a>

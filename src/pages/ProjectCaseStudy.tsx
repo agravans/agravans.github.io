@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getProject, FLAGSHIP_PROJECTS } from "../lib/projects";
+import { getProject, FLAGSHIP_PROJECTS, LANE_META } from "../lib/projects";
 import { ArrowLeft } from "lucide-react";
 import { Container } from "../components/layout/Container";
 import { GlowCard } from "../components/ui/GlowCard";
@@ -25,7 +25,11 @@ export function ProjectCaseStudy() {
   }
 
   const p = project as FlagshipProject;
-  const related = FLAGSHIP_PROJECTS.filter((x) => x.slug !== p.slug).slice(0, 3);
+  const lane = LANE_META[p.lane];
+  const related = FLAGSHIP_PROJECTS
+    .filter((x) => x.slug !== p.slug)
+    .sort((a, b) => Number(b.lane === p.lane) - Number(a.lane === p.lane))
+    .slice(0, 3);
 
   return (
     <>
@@ -41,11 +45,12 @@ export function ProjectCaseStudy() {
             className="mb-16 grid gap-8 lg:grid-cols-12"
           >
             <div className="lg:col-span-8">
-              <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{p.title}</h1>
+              <Tag tone={lane.tone}>{lane.label}</Tag>
+              <h1 className="mt-4 mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{p.title}</h1>
               <p className="mb-6 text-lg text-[var(--text-muted)]">{p.tagline}</p>
               <div className="flex flex-wrap gap-2">
                 {p.stack.map((s) => (
-                  <Tag key={s}>{s}</Tag>
+                  <Tag key={s} tone={lane.tone}>{s}</Tag>
                 ))}
               </div>
               <div className="mt-6 flex flex-wrap gap-4">
@@ -62,7 +67,7 @@ export function ProjectCaseStudy() {
               </div>
             </div>
             <div className="lg:col-span-4">
-              <GlowCard className="p-6">
+              <GlowCard className="p-6" tone={lane.tone}>
                 <dl className="space-y-4 text-sm">
                   <div>
                     <dt className="text-[var(--text-dim)]">Role</dt>
@@ -77,8 +82,8 @@ export function ProjectCaseStudy() {
                     <dd className="font-mono text-xs">{p.stack.join(", ")}</dd>
                   </div>
                   <div>
-                    <dt className="text-[var(--text-dim)]">Category</dt>
-                    <dd>{p.category}</dd>
+                    <dt className="text-[var(--text-dim)]">Lane</dt>
+                    <dd>{lane.label}</dd>
                   </div>
                 </dl>
               </GlowCard>
@@ -156,7 +161,7 @@ export function ProjectCaseStudy() {
             <div className="grid gap-6 md:grid-cols-3">
               {related.map((r) => (
                 <Link key={r.slug} to={`/projects/${r.slug}`}>
-                  <GlowCard className="h-full p-5">
+                  <GlowCard className="h-full p-5" tone={LANE_META[r.lane].tone}>
                     <h3 className="font-semibold">{r.title}</h3>
                     <p className="mt-2 text-sm text-[var(--text-muted)]">{r.tagline}</p>
                     <span className="mt-4 inline-flex items-center text-sm text-[var(--accent)]">Read case study →</span>

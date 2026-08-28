@@ -11,11 +11,11 @@ const EXPERIENCE = [
     role: "Generative AI Engineer",
     period: "Jun 2026 – Present",
     bullets: [
-      "Built an organization-level knowledge search and analysis platform with specialized agents, sub-agents, skills and tools. Connected enterprise knowledge bases to Databricks tables and SQL through Python/OpenWebUI. Teams retrieve grounded evidence, run analysis and generate dashboards, serving concurrent users at scale.",
-      "Improved retrieval with cross-encoder query encoding, Cohere Rerank 3.5, knowledge-base routing, table/schema metadata and prompt/context optimization. Served Claude Opus-family models through AWS Bedrock and LiteLLM. Raised retrieval accuracy 30%. Cut cost from $1.30 to $0.60 per query (54%).",
-      "Built Text-to-SQL and analytics agents: NL query interpretation, schema/table discovery, metadata-aware context routing, SQL generation and Databricks execution, then dashboards. Improved SQL generation precision by 50%. Reduced manual analysis for organization-level insight.",
+      "Architected an organization-level knowledge search and analysis platform. Built a ReAct orchestrator as the core agent, with Text-to-SQL and analytics sub-agents, 20+ tools and 12+ skills on intelligent routing, served through Claude Opus via AWS Bedrock and LiteLLM (Python/OpenWebUI, Databricks SQL). Used by 250+ concurrent users across domains at scale.",
+      "Architected the organizational agentic routing ontology: clustered 120k chats with DBSCAN into 5 domains and 30 categories. Retrieval used cross-encoders and Gemini embeddings via Qdrant for knowledge, intelligent expansion and KB routing, 2-pass filtering with Cohere reranker and aggregated scoring. Improved retrieval recall and accuracy by 40%. Cost reduction 54% ($1.30 to $0.60/query).",
+      "Sub-agents used few-shot cards and taxonomy-driven metadata for warehouse analysis on Databricks. SQL generation precision +50%. Cut analysis context from 145k to 10k tokens.",
     ],
-    stack: ["Python", "OpenWebUI", "Databricks", "AWS Bedrock", "LiteLLM", "Claude"],
+    stack: ["Python", "OpenWebUI", "Qdrant", "Databricks", "AWS Bedrock", "LiteLLM", "Claude"],
   },
   {
     company: "Gameopedia",

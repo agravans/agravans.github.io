@@ -65,8 +65,8 @@ const EDUCATION = [
 ];
 
 const SKILL_CLUSTERS = [
-  { label: "Agentic AI & Retrieval", items: ["LangGraph", "RAG", "Reranking", "Cross-Encoders", "Cohere Rerank", "MCP", "LiteLLM", "Tool Calling"] },
-  { label: "AI Evaluation & Reliability", items: ["Retrieval Evaluation", "Agent Evaluation", "Langfuse", "Structured Outputs", "Model Routing", "Cost/Latency"] },
+  { label: "Agentic AI & LLMs", items: ["LangGraph", "RAG", "Rerankers", "Cross-Encoders", "MCP", "LiteLLM", "Tool Calling"] },
+  { label: "AI Evaluation & Reliability", items: ["Retrieval and Agent Evaluation", "Langfuse", "Structured Outputs", "Model Routing", "Cost/Latency"] },
   { label: "ML & Deep Learning", items: ["PyTorch", "LoRA/PEFT", "ViTs", "Recommendations", "Ranking", "Fine-Tuning"] },
   { label: "Engineering & Data", items: ["Python", "FastAPI", "SQL", "Databricks", "PostgreSQL", "AWS Bedrock", "Next.js"] },
   { label: "Multimodal / Media", items: ["fal.ai", "ImageKit.io", "ElevenLabs", "ASR", "Diarization"] },

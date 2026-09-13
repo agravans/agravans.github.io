@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 const FOCUS = {
   building: [
-    "LifeOS (personal OS + AI assistant + gateway routing)",
-    "FanPulse — AI extraction of industry needs and franchise insights from live fandom",
+    "fanPulse Product Studio — local evidence rooms, citation-gated briefs, versioned scripts (github.com/agravans/fanPulse)",
+    "Productivity OS — notes-first Today dashboard and deterministic planning (github.com/agravans/productivityOS)",
+    "LifeOS — personal OS + gateway assistant (github.com/agravans/lifeOS)",
     "Fiction.ai — multi-agent filmmaking (fal.ai, ImageKit.io, ElevenLabs)",
-    "VideoTranslation — regional L&D dubbing pipeline (STT → translate → QA → TTS → sync)",
   ],
   thinking: ["Useful AI products", "Memory and orchestration", "Better human-AI interfaces"],
   writing: ["Building LifeOS from personal chaos", "The 50 Questions That Make AI Personal", "Turning GPT into a Personalized Productivity Agent"],

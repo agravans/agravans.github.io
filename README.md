@@ -8,8 +8,9 @@ Professional portfolio for Subandhu Agravanshi, AI Engineer with 3+ years in Gen
 
 | Project | Repo | Focus |
 |--------|------|--------|
+| **fanPulse** | [fanPulse](https://github.com/agravans/fanPulse) | Product Studio — local evidence, citation-gated research, story versions (FastAPI + SQLite) |
+| **Productivity OS** | [productivityOS](https://github.com/agravans/productivityOS) | Product Studio — notes-first Today companion, explainable planning |
 | **LifeOS** | [lifeOS](https://github.com/agravans/lifeOS) | AI-native personal OS — Next.js 16, Prisma, gateway assistant |
-| **FanPulse** | local research product | Demand intelligence — AI extraction of industry needs, HDBSCAN clustering, opportunity/risk briefs |
 | **VideoTranslation** | [videoTranslation](https://github.com/agravans/videoTranslation) | L&D dubbing to 11+ Indian languages — FastAPI, Celery, Whisper, Sarvam, Claude, Next.js 15 |
 
 ## Tech Stack

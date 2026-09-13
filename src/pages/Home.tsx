@@ -27,7 +27,7 @@ const LANE_PROJECTS: Record<Lane, string[]> = {
   "Agentic AI": ["enterprise-knowledge-agent", "research-gap-finder"],
   "Generative Media": ["multimodal-film-stack", "video-translation-platform"],
   "Applied Research": ["fanpulse", "enterprise-rag-sentiment"],
-  "Product Systems": ["lifeos"],
+  "Product Systems": ["productivity-os", "lifeos"],
 };
 
 const PHILOSOPHY = [
@@ -80,10 +80,10 @@ export function Home() {
               <GlowCard className="rounded-3xl border-teal-400/20 bg-gradient-to-br from-teal-400/[0.08] via-white/[0.03] to-amber-300/[0.06]">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">Currently Building</h3>
                 <ul className="space-y-3 text-sm">
-                  <li>• Fiction.ai — multi-agent filmmaking with fal.ai, ImageKit.io, ElevenLabs</li>
-                  <li>• FanPulse — AI extraction of industry needs and franchise insights from live fandom</li>
+                  <li>• fanPulse — Product Studio evidence + story workspace (FastAPI, citation-gated briefs)</li>
+                  <li>• Productivity OS — notes-first Today companion with explainable planning</li>
                   <li>• LifeOS — AI-native personal OS (missions, goals, gateway assistant)</li>
-                  <li>• VideoTranslation — L&D dubbing to 11+ Indian languages</li>
+                  <li>• Fiction.ai — multi-agent filmmaking with fal.ai, ImageKit.io, ElevenLabs</li>
                 </ul>
                 <div className="mt-6 border-t border-white/10 pt-4 text-sm text-[var(--text-dim)]">
                   <p>Based in India</p>
@@ -233,7 +233,7 @@ export function Home() {
       <Section className="border-t border-white/10">
         <SectionHeading
           title="Now"
-          description="Fiction.ai, FanPulse, LifeOS, VideoTranslation, and writing on useful AI product design."
+          description="Product Studio (fanPulse + Productivity OS), LifeOS, Fiction.ai, and writing on useful AI product design."
         />
         <Link to="/now">
           <Button variant="secondary">View Now Page</Button>

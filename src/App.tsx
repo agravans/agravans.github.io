@@ -10,11 +10,14 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Now } from "./pages/Now";
 
+import { Studio } from "./pages/Studio";
+
 function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/studio" element={<Studio />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
         <Route path="/experience" element={<Experience />} />
@@ -29,3 +32,4 @@ function App() {
 }
 
 export default App;
+

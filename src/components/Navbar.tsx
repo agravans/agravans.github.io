@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV = [
+  { to: "/studio", label: "Studio" },
   { to: "/projects", label: "Projects" },
   { to: "/writing", label: "Writing" },
   { to: "/experience", label: "Experience" },
@@ -31,7 +32,7 @@ export function Navbar() {
         <Link to="/" className="font-semibold tracking-tight">
           SA
         </Link>
-        <div className="hidden md:flex md:items-center md:gap-8">
+        <div className="hidden lg:flex lg:items-center lg:gap-5">
           {NAV.map(({ to, label }) => (
             <Link
               key={to}
@@ -42,7 +43,7 @@ export function Navbar() {
             </Link>
           ))}
         </div>
-        <div className="hidden md:flex md:items-center md:gap-4">
+        <div className="hidden lg:flex lg:items-center lg:gap-4">
           <a href="/resume.pdf" download="Subandhu-Agravanshi-Resume.pdf" className="text-sm text-[var(--text-muted)] hover:text-[var(--text)]">
             Resume
           </a>
@@ -54,9 +55,10 @@ export function Navbar() {
           </a>
         </div>
         <button
-          className="md:hidden p-2 -mr-2"
+          className="lg:hidden p-2 -mr-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -67,7 +69,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-white/10 md:hidden"
+            className="border-t border-white/10 bg-[#151916] lg:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {NAV.map(({ to, label }) => (
@@ -85,3 +87,4 @@ export function Navbar() {
     </header>
   );
 }
+

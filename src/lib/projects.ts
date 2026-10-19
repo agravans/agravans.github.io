@@ -40,6 +40,7 @@ export const LANE_META: Record<
 };
 
 export const HOME_FEATURED_SLUGS = [
+  "superhome",
   "fanpulse",
   "productivity-os",
   "lifeos",
@@ -61,6 +62,35 @@ export type CaseStudy = {
 };
 
 export const FLAGSHIP_PROJECTS = [
+  {
+    slug: "superhome",
+    title: "Superhome",
+    tagline: "Plan dinners, price a complete household basket and see which retailer combination fits your budget.",
+    summary: "Local-first meal and home shopping planner with editable synthetic price comparisons and budget-aware meal swaps.",
+    overview: "Household size, dietary restrictions, appliances, favourite meals, pantry stock, location and household refill needs feed a deterministic planning engine. It produces seven dinners, scales ingredient quantities, subtracts pantry stock and adds home essentials. A comparison tool prices the complete list at Amazon, Blinkit, Zepto and Instamart, including editable delivery fees, then finds the cheapest single store and split basket. Starting quotes are synthetic demo data and can be replaced with user-entered prices; no live retailer prices, carts or purchases are represented.",
+    category: "Product Systems",
+    lane: "Product Systems" as Lane,
+    problem: "Planning dinners, checking stock and remembering home supplies require repeated decisions every week.",
+    whyMatters: "A trustworthy household assistant should show exactly why an item appears and require review before any purchase.",
+    outcome: "Working portfolio demo with pantry-aware planning, item and full-basket comparisons, budget-focused meal swaps and per-retailer shopping lists.",
+    stack: ["React", "TypeScript", "Vite", "Local storage"],
+    role: "Product concept & implementation",
+    timeline: "2026",
+    links: { github: "https://github.com/agravans/agravans.github.io", demo: "/superhome" },
+    caseStudy: {
+      users: "Individuals, couples and households planning weekly food and home supplies.",
+      constraints: "Static portfolio hosting, no backend credentials, catalog access or retailer authorization. Seasonal suggestions are curated examples, not live produce availability.",
+      architecture: "Profile and pantry state → eligibility filters → seven-day menu → ingredient aggregation → pantry subtraction → editable list → user-editable quotes and fees → single-store and split-basket optimization.",
+      data: "Curated recipe catalog and synthetic unit-price examples. User inputs and price edits remain in this browser's local storage; quotes are invalidated when required quantities change.",
+      modelAgent: "Deterministic recommendation rules; no model or nutrition claims. More expressive personalization can be evaluated after observing real household edits.",
+      backend: "None in the demo. Future commerce adapter would need OAuth, catalog mapping, availability, price rechecks and user-confirmed checkout.",
+      evaluation: "Build and lint checks plus engine checks for diet exclusions, pantry subtraction, quote invalidation, delivery-fee-aware basket optimization and budget plan completeness.",
+      deployment: "Portfolio route /superhome after this PR merges and GitHub Pages deploys.",
+      latencyCost: "Entirely client-side; no API or inference cost.",
+      failureModes: "Synthetic prices are not live offers; pack sizes, promotions, stock and final fees vary. User-entered quotes can also become stale. Allergy labels or pantry estimates cannot certify product safety. Verify each product and checkout total. No autonomous orders.",
+      next: "Pilot with households, add per-person preferences and verified nutrition; integrate Swiggy Builders Club Instamart in staging, then evaluate catalog matches and explicit checkout approval.",
+    },
+  },
   {
     slug: "enterprise-knowledge-agent",
     title: "Enterprise Knowledge & Analytics Agent",

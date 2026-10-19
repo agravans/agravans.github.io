@@ -9,6 +9,7 @@ import { WritingDetail } from "./pages/WritingDetail";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Now } from "./pages/Now";
+import { Superhome } from "./pages/Superhome";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/now" element={<Now />} />
+        <Route path="/superhome" element={<Superhome />} />
       </Routes>
     </Layout>
   );

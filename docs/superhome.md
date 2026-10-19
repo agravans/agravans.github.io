@@ -2,9 +2,11 @@
 
 ## What works in the portfolio demo
 
-Open `/superhome`. Set household size, diet, excluded ingredients, appliances, favourites, city/month, pantry quantities and home essentials. Build a seven-day dinner plan. The curated recipe engine filters diets and equipment, prioritizes favourite and seasonal meals, scales ingredients, aggregates duplicates, subtracts pantry stock, and returns an editable shopping checklist. Copy or download the remaining items. Preferences are saved in the browser.
+Open `/superhome`. Set household size, diet, excluded ingredients, appliances, favourites, city/month, pantry quantities, home essentials and a weekly budget. Build a seven-day dinner plan. The curated recipe engine filters diets and equipment, prioritizes favourite and seasonal meals, scales ingredients, aggregates duplicates, subtracts pantry stock, and returns an editable shopping checklist. Copy or download the remaining items. Preferences are saved in the browser.
 
-This is a product prototype with illustrative recipes. It does not check package allergens, nutrition, local produce stock, retailer catalog, prices, delivery eligibility, or place orders. Retailer buttons open a search for the first unchecked item; copying the full list is the manual handoff.
+The price comparison starts with **synthetic demo estimates**, not scraped or live retailer prices. Each displayed quote is for the entire required quantity of an item. The user can edit quotes for Amazon, Blinkit, Zepto and Instamart, mark an item unavailable by clearing a field, and change estimated delivery fees. The app compares complete single-store baskets and optimizes a split basket with delivery charged for each used retailer. It groups the chosen shopping list by retailer for manual handoff. A quote is ignored when the required quantity changes. Budget status shows the shortfall without silently removing essentials; “Build a budget-focused week” makes permitted recipe swaps while keeping seven dinners and the home list. It may still exceed the target.
+
+This is a product prototype with illustrative recipes. It does not check package allergens, nutrition, local produce stock, live retailer catalog/prices, pack sizes, promotions, delivery eligibility, or place orders. Retailer buttons open a search for the first unchecked item; copying the full list is the manual handoff. Final charges may differ, even when a user entered quotes.
 
 ## Product direction
 
@@ -19,6 +21,7 @@ This is a product prototype with illustrative recipes. It does not check package
 - **Swiggy Instamart:** Builders Club documents a developer quickstart and Instamart MCP tools for product search, cart updates, payment options, checkout and tracking. Local development can begin without production approval; staging/production needs the published access flow. Start with a standalone server-side adapter and OAuth, then test catalog mapping and cart preview in local development. https://mcp.swiggy.com/builders/docs/start/developer/ and https://mcp.swiggy.com/builders/docs/reference/instamart/
 - **Amazon:** Alexa Shopping Actions document add-to-cart for Alexa skills using an ASIN and customer confirmation. This is not a general web-app Amazon Fresh bulk checkout API. Keep the web demo at search handoff pending an applicable partner agreement. https://developer.amazon.com/en-IN/docs/alexa/alexa-shopping/implement-shopping-actions.html
 - **Blinkit and Zepto:** No public consumer-order integration was established in this research. Request official partner access before promising cart sync or checkout; keep search handoff meanwhile.
+- **Price feeds:** Blinkit's terms restrict collecting or reusing product listings and prices. Do not scrape its website to populate the comparator. Obtain authorized catalog and pricing access for each retailer; retain the manual-quote path. https://blinkit.com/terms
 
 ## Pilot and measurement
 

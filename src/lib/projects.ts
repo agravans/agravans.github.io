@@ -40,6 +40,7 @@ export const LANE_META: Record<
 };
 
 export const HOME_FEATURED_SLUGS = [
+  "superhome",
   "fanpulse",
   "productivity-os",
   "lifeos",
@@ -61,6 +62,35 @@ export type CaseStudy = {
 };
 
 export const FLAGSHIP_PROJECTS = [
+  {
+    slug: "superhome",
+    title: "Superhome",
+    tagline: "A practical weekly meal and home shopping planner, tailored to your household, pantry and season.",
+    summary: "Interactive local-first demo that turns household preferences into a meal plan and editable grocery and home essentials list.",
+    overview: "Household size, dietary restrictions, appliances, favourite meals, pantry stock, location and household refill needs feed a deterministic planning engine. It produces seven dinners, scales ingredient quantities, subtracts pantry stock, adds home essentials, and exports a shopping list. Retailer discovery opens search pages; no purchases or live cart integrations are represented in this demo.",
+    category: "Product Systems",
+    lane: "Product Systems" as Lane,
+    problem: "Planning dinners, checking stock and remembering home supplies require repeated decisions every week.",
+    whyMatters: "A trustworthy household assistant should show exactly why an item appears and require review before any purchase.",
+    outcome: "Working portfolio demo with an editable list, pantry-aware quantities, seasonal suggestions and local persistence.",
+    stack: ["React", "TypeScript", "Vite", "Local storage"],
+    role: "Product concept & implementation",
+    timeline: "2026",
+    links: { github: "https://github.com/agravans/agravans.github.io", demo: "/superhome" },
+    caseStudy: {
+      users: "Individuals, couples and households planning weekly food and home supplies.",
+      constraints: "Static portfolio hosting, no backend credentials, catalog access or retailer authorization. Seasonal suggestions are curated examples, not live produce availability.",
+      architecture: "Profile and pantry state → eligibility filters → seven-day menu → serving-scaled ingredient aggregation → pantry subtraction → editable list and retailer search handoff.",
+      data: "Curated recipe catalog with ingredient quantities, allergens, appliances and tags. User inputs remain in this browser's local storage.",
+      modelAgent: "Deterministic recommendation rules; no model or nutrition claims. More expressive personalization can be evaluated after observing real household edits.",
+      backend: "None in the demo. Future commerce adapter would need OAuth, catalog mapping, availability, price rechecks and user-confirmed checkout.",
+      evaluation: "Build and lint checks plus engine checks for diet exclusions, appliance eligibility, quantity aggregation and pantry subtraction.",
+      deployment: "Portfolio route /superhome after this PR merges and GitHub Pages deploys.",
+      latencyCost: "Entirely client-side; no API or inference cost.",
+      failureModes: "Allergy labels or stale pantry estimates cannot certify product safety. Curated recipes filter common restrictions; verify package labels and retailer substitutions. No autonomous orders.",
+      next: "Pilot with households, add per-person preferences and verified nutrition; integrate Swiggy Builders Club Instamart in staging, then evaluate catalog matches and explicit checkout approval.",
+    },
+  },
   {
     slug: "enterprise-knowledge-agent",
     title: "Enterprise Knowledge & Analytics Agent",

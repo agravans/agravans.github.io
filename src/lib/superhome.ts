@@ -3,7 +3,7 @@ export type Appliance = "stove" | "oven" | "air fryer" | "microwave";
 export type Unit = "g" | "ml" | "pc";
 export type Ingredient = { name: string; amount: number; unit: Unit; category: string };
 export type Recipe = { id: string; name: string; note: string; diet: Diet; appliances: Appliance[]; ingredients: Ingredient[]; season?: string[]; minutes: number };
-export type Profile = { people: number; diet: Diet; avoid: string; appliances: Appliance[]; favourites: string; city: string; month: number; pantry: string; home: string };
+export type Profile = { people: number; diet: Diet; avoid: string; appliances: Appliance[]; favourites: string; city: string; month: number; pantry: string; home: string; budget: number };
 export type ListItem = Ingredient & { source: string; id: string; checked: boolean };
 
 const i = (name: string, amount: number, unit: Unit, category: string): Ingredient => ({ name, amount, unit, category });
@@ -21,7 +21,7 @@ export const RECIPES: Recipe[] = [
   { id:"airtofu", name:"Air-fryer tofu bowls", note:"Crisp edges, minimal effort", diet:"vegan", appliances:["air fryer"], minutes:25, ingredients:[i("Tofu",150,"g","Protein"),i("Rice",80,"g","Pantry"),i("Carrot",90,"g","Produce"),i("Lemon",0.5,"pc","Produce")] },
 ];
 
-export const DEFAULT_PROFILE: Profile = { people:2, diet:"vegetarian", avoid:"", appliances:["stove"], favourites:"paneer, dal", city:"Bengaluru", month:new Date().getMonth()+1, pantry:"Rice: 300 g\nAtta: 200 g", home:"Dish soap: 1 pc\nLaundry detergent: 1 pc" };
+export const DEFAULT_PROFILE: Profile = { people:2, diet:"vegetarian", avoid:"", appliances:["stove"], favourites:"paneer, dal", city:"Bengaluru", month:new Date().getMonth()+1, pantry:"Rice: 300 g\nAtta: 200 g", home:"Dish soap: 1 pc\nLaundry detergent: 1 pc", budget:1800 };
 export function seasonFor(month: number, city: string) {
   const m = Number(month);
   if (/bengaluru|hyderabad|mumbai|delhi|india/i.test(city)) return m>=3&&m<=6 ? "summer" : m>=7&&m<=9 ? "monsoon" : "winter";
@@ -37,16 +37,13 @@ export function parseLines(raw: string): Ingredient[] {
     return i(name.trim(),match?Number(match[1])*factor:1,unit==="kg"?"g":unit==="l"?"ml":unit as Unit,"Home essentials");
   }).filter(x=>x.name);
 }
-export function makePlan(profile: Profile): { meals: Recipe[]; items: ListItem[]; season: string; rejected: number } {
-  const season=seasonFor(profile.month,profile.city);
+export type Plan = { meals: Recipe[]; items: ListItem[]; season: string; rejected: number };
+function eligible(profile: Profile) {
   const avoid=profile.avoid.toLowerCase().split(",").map(x=>x.trim()).filter(Boolean);
-  const allowed=RECIPES.filter(r=>rank[r.diet]<=rank[profile.diet] && r.appliances.every(a=>profile.appliances.includes(a)) && !r.ingredients.some(x=>avoid.some(term=>x.name.toLowerCase().includes(term))));
-  const fav=profile.favourites.toLowerCase().split(",").map(x=>x.trim()).filter(Boolean);
-  const scored=[...allowed].sort((a,b)=>{
-    const score=(r:Recipe)=>(r.season?.includes(season)?3:0)+(fav.some(f=>r.name.toLowerCase().includes(f))?5:0);
-    return score(b)-score(a)||RECIPES.indexOf(a)-RECIPES.indexOf(b);
-  });
-  const meals=Array.from({length:7},(_,day)=>scored[day%scored.length]).filter((x):x is Recipe=>Boolean(x));
+  return RECIPES.filter(r=>rank[r.diet]<=rank[profile.diet] && r.appliances.every(a=>profile.appliances.includes(a)) && !r.ingredients.some(x=>avoid.some(term=>x.name.toLowerCase().includes(term))));
+}
+function assemble(profile: Profile, meals: Recipe[], allowedCount: number): Plan {
+  const season=seasonFor(profile.month,profile.city);
   const stock=parseLines(profile.pantry);
   const quantities=new Map<string,ListItem>();
   meals.forEach(r=>r.ingredients.forEach(ingredient=>{
@@ -60,5 +57,39 @@ export function makePlan(profile: Profile): { meals: Recipe[]; items: ListItem[]
     return {...item,amount:Math.max(0,Math.ceil(item.amount-onHand))};
   }).filter(item=>item.amount>0);
   for(const essential of parseLines(profile.home)) items.push({...essential,id:"home|"+essential.name.toLowerCase(),source:"Household refill",checked:false});
-  return {meals,items,season,rejected:RECIPES.length-allowed.length};
+  return {meals,items,season,rejected:RECIPES.length-allowedCount};
+}
+export function makePlan(profile: Profile): Plan {
+  const season=seasonFor(profile.month,profile.city);
+  const allowed=eligible(profile);
+  const fav=profile.favourites.toLowerCase().split(",").map(x=>x.trim()).filter(Boolean);
+  const scored=[...allowed].sort((a,b)=>{
+    const score=(r:Recipe)=>(r.season?.includes(season)?3:0)+(fav.some(f=>r.name.toLowerCase().includes(f))?5:0);
+    return score(b)-score(a)||RECIPES.indexOf(a)-RECIPES.indexOf(b);
+  });
+  const meals=Array.from({length:7},(_,day)=>scored[day%scored.length]).filter((x):x is Recipe=>Boolean(x));
+  return assemble(profile,meals,allowed.length);
+}
+
+export function makeBudgetPlan(profile: Profile, estimate: (items: ListItem[]) => number): Plan {
+  const allowed=eligible(profile);
+  let current=makePlan(profile);
+  if (!allowed.length || !Number.isFinite(profile.budget) || profile.budget<=0) return current;
+  let cost=estimate(current.items);
+  const cap=Math.max(3,Math.ceil(7/allowed.length));
+  for (let iteration=0; iteration<7 && cost>profile.budget; iteration++) {
+    let best: Plan | null=null;
+    let bestCost=cost;
+    for (let day=0;day<current.meals.length;day++) for(const recipe of allowed) {
+      if(recipe.id===current.meals[day].id) continue;
+      const meals=current.meals.map((meal,index)=>index===day?recipe:meal);
+      if(meals.filter(meal=>meal.id===recipe.id).length>cap) continue;
+      const candidate=assemble(profile,meals,allowed.length);
+      const nextCost=estimate(candidate.items);
+      if(nextCost<bestCost-.01){best=candidate;bestCost=nextCost;}
+    }
+    if(!best) break;
+    current=best;cost=bestCost;
+  }
+  return current;
 }
